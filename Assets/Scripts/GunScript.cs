@@ -11,15 +11,19 @@ public class GunScript : MonoBehaviour
   private Vector2 mousPos;
   public Rigidbody2D _rigidbody2D;
   public Camera cam;
-  private SpriteRenderer sprite;
+  private Transform spriteTransform;
+  public SpriteRenderer _spriteRenderer;
   private HingeJoint2D HingeJoint2D;
+
+  private bool isFliped = false;
   
   
   
   private void Awake()
   {
-    sprite = GetComponent<SpriteRenderer>();
+    spriteTransform = GetComponentInChildren<Transform>();
     HingeJoint2D = GetComponent<HingeJoint2D>();
+    // _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
   }
 
 
@@ -41,17 +45,19 @@ public class GunScript : MonoBehaviour
 
   public void FlipSprite(Vector3 dir)
   {
-    if (dir.x < 0.00f)
+    if (dir.x < 0.00f && !isFliped)
     {
-      sprite.flipY = dir.x < 0.00f;
-      transform.position -= new Vector3(0.2f, 0, 0);
-      HingeJoint2D.anchor += new Vector2(0, 0.2f);
+      _spriteRenderer.flipY = dir.x < 0.00f;
+      spriteTransform.position += new Vector3(0.2f, 0.35f, 0);
+      isFliped = true;
+      // HingeJoint2D.anchor += new Vector2(0, 0.2f);
     }
-    else
+    if (dir.x > 0.00f && isFliped)
     {
-      sprite.flipY = dir.x > 0.00f;
-      transform.position += new Vector3(0.2f, 0, 0);
-      HingeJoint2D.anchor -= new Vector2(0, 0.2f);
+      _spriteRenderer.flipY = false;
+      spriteTransform.position -= new Vector3(0.2f, 0.35f, 0);
+      isFliped = false;
+      // HingeJoint2D.anchor -= new Vector2(0, 0.2f);
     }
 
   }
