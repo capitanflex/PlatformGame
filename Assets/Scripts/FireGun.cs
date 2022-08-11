@@ -2,25 +2,50 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public class FireGun : MonoBehaviour
 {
     public GameObject Mocha;
     [SerializeField]private int ReloadMocha = 100;
     public Transform SpawnPoint;
+    private bool CanFire = true;
+    public GameObject R;
+
+    private void Awake()
+    {
+        R.SetActive(false);
+    }
+
     public void Update()
     {
-        if (Input.GetKey(KeyCode.G) && ReloadMocha != 0)
+        
+        if (Input.GetKey(KeyCode.Mouse0) && ReloadMocha != 0 && CanFire)
         {
             Instantiate(Mocha, SpawnPoint.position, transform.rotation);
-            Instantiate(Mocha, SpawnPoint.position + (Vector3.right * 0.1f), transform.rotation);
-            Instantiate(Mocha, SpawnPoint.position + (Vector3.right * -0.1f), transform.rotation);
             ReloadMocha -= 1;
+            
         }
-
+        
+        
+        
         if (Input.GetKey(KeyCode.R))
         {
-            ReloadMocha = 100;
+            
+            StartCoroutine(Reload());
+            
         }
+    }
+
+    IEnumerator Reload()
+    {
+            
+            CanFire = false;
+            R.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            ReloadMocha = 100;
+            CanFire = true;
+            R.SetActive(false);
+
     }
 }
