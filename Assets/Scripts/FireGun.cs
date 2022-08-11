@@ -12,7 +12,9 @@ public class FireGun : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.G) && ReloadMocha != 0)
         {
-            Instantiate(Mocha, SpawnPoint.position, Quaternion.Euler(0,0,0));
+            Instantiate(Mocha, SpawnPoint.position, transform.rotation);
+            Instantiate(Mocha, SpawnPoint.position + (Vector3.right * 0.1f), transform.rotation);
+            Instantiate(Mocha, SpawnPoint.position + (Vector3.right * -0.1f), transform.rotation);
             ReloadMocha -= 1;
         }
 
