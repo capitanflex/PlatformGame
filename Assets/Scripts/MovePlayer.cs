@@ -8,7 +8,7 @@ public class MovePlayer : MonoBehaviour
 {
     
     public float speed = 5f;
-    public int lives = 5;
+    
     public float jumpforce = 1f;
     
 
@@ -19,6 +19,7 @@ public class MovePlayer : MonoBehaviour
     private SpriteRenderer sprite;
     public GameObject farting;
     private Animator anim;
+    public GunScript GunScript;
     
 
     private void Awake()
@@ -75,6 +76,7 @@ public class MovePlayer : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, transform.position + dir, speed * Time.deltaTime);
 
         sprite.flipX = dir.x < 0.00f;
+        // GunScript.FlipSprite(dir);
         
     }
 
@@ -86,7 +88,7 @@ public class MovePlayer : MonoBehaviour
 
     private void CheckGround()
     {
-        Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, 0.3f);
+        Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, 0.25f);
         isGrounded = collider.Length >= 1;
         
     }
