@@ -1,18 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Interface : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Text BulletStatus;
+    
 
-    // Update is called once per frame
+    
+
+    
     void Update()
-    {
+    {   
+        if(GetComponent<FireGun>().CanFire == true)
+        { 
+            BulletStatus.text = "Запас саки: " + GetComponent<FireGun>().ReloadMocha;
+        }
+        else
+        {
+            BulletStatus.text = "Заряжаем саку...";
+        }
+
         
     }
 }
