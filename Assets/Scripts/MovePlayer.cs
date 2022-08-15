@@ -27,6 +27,7 @@ public class MovePlayer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        gameObject.transform.position = new Vector3(27.7f,-3.47f,0);
 
     }
 
