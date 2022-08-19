@@ -27,7 +27,10 @@ public class Tron : MonoBehaviour
 
     void Update()
     {
-       
+       if (HealthTron <= 5)
+       {
+           
+       }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
