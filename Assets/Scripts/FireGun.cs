@@ -23,6 +23,11 @@ public class FireGun : MonoBehaviour
         {
             StartCoroutine(Reload());
         }
+
+         if (ReloadMocha <= 0)
+         { 
+             StartCoroutine(Reload());
+         }
     
     }
     IEnumerator Reload()
