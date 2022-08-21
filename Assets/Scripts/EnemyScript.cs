@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    public Rigidbody2D rb;
     
     void Update()
     {
