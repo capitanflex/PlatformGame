@@ -10,12 +10,12 @@ public class Tron : MonoBehaviour
 {
     public GameObject ObjTron;
     public int HealthTron= 10;
-    private SpriteRenderer ChangeTron;
-    public Sprite BrokenTron0;
-    public Sprite BrokenTron1;
+    public SpriteRenderer ChangeTron;
+
+    public Animator anim;
     private void Awake()
     {
-        Instantiate(ObjTron, new Vector3(26, -2.3f,0), quaternion.Euler(0,0,0));
+        
         ChangeTron = GetComponent<SpriteRenderer>();
     }
 
@@ -29,15 +29,21 @@ public class Tron : MonoBehaviour
     {
        if (HealthTron <= 5)
        {
-           
+           anim.SetBool("isBroken", true);
        }
+       if (HealthTron <= 3)
+       {
+           anim.SetBool("isBroken2", true);
+           anim.SetBool("isBroken", false);
+       }
+       Debug.Log(HealthTron);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "enemy")
+        if (col.name == "Enemy")
         {
-            HealthTron -= 1; 
+            
         }
     }
 

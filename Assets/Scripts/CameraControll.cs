@@ -6,8 +6,10 @@ using UnityEngine;
 public class CameraControll : MonoBehaviour
 {
     [SerializeField] private Transform player;
+    public GameObject Rb; 
     
     private Vector3 pos;
+
 
    
 

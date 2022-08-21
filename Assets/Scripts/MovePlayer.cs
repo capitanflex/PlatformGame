@@ -1,25 +1,31 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class MovePlayer : MonoBehaviour
 {
     
     public float speed = 5f;
     
-    public float jumpforce = 1f;
+    public float jumpforce = 500f;
     
 
     private bool isGrounded = false;
     private bool ternOnLeft = false;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private SpriteRenderer sprite;
     public GameObject farting;
     private Animator anim;
     public GunScript GunScript;
+    public Transform PlayerPoint;
+    public LayerMask Ground;
     
 
     private void Awake()
@@ -90,9 +96,19 @@ public class MovePlayer : MonoBehaviour
 
     private void CheckGround()
     {
-        Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, 0.25f);
-        isGrounded = collider.Length >= 1;
-        
+
+        RaycastHit2D RayHit = Physics2D.Raycast(PlayerPoint.position, Vector2.right, Ground);
+        if (RayHit.collider != null)
+        {
+            isGrounded = true;
+            Debug.DrawRay(PlayerPoint.position, Vector2.right, Color.green);
+        }
+        else
+        {
+            isGrounded = false;
+            Debug.DrawRay(PlayerPoint.position, Vector2.right, Color.red);
+        }
+
     }
     
     //аниматор
