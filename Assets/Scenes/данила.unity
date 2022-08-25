@@ -422,6 +422,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167290615}
   m_CullTransparentMesh: 1
+--- !u!212 &247389123 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3483503816955515389, guid: 7ead8934ea3fa6647b46ab2d20371f2e, type: 3}
+  m_PrefabInstance: {fileID: 1903380280}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &253568313 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3483503816889201750, guid: 7ead8934ea3fa6647b46ab2d20371f2e, type: 3}
@@ -614,7 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 253568318}
-  Rb: {fileID: 253568313}
+  Rb: {fileID: 0}
 --- !u!1 &527754169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,6 +1226,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3483503816889201746, guid: 7ead8934ea3fa6647b46ab2d20371f2e, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 247389123}
     - target: {fileID: 3483503816889201746, guid: 7ead8934ea3fa6647b46ab2d20371f2e, type: 3}
       propertyPath: PlayerPoint
       value: 

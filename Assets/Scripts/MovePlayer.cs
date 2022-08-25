@@ -20,18 +20,18 @@ public class MovePlayer : MonoBehaviour
     private bool ternOnLeft = false;
 
     public Rigidbody2D rb;
-    private SpriteRenderer sprite;
+    public SpriteRenderer sprite;
     public GameObject farting;
     private Animator anim;
     public GunScript GunScript;
     public Transform PlayerPoint;
     public LayerMask Ground;
     
+    
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponent<Animator>();
         
         gameObject.transform.position = new Vector3(27.7f,-3.47f,0);
@@ -82,10 +82,10 @@ public class MovePlayer : MonoBehaviour
         
 
         transform.position = Vector3.MoveTowards(transform.position, transform.position + dir, speed * Time.deltaTime);
-
-        sprite.flipX = dir.x < 0.00f;
-        // GunScript.FlipSprite(dir);
         
+        sprite.flipX = dir.x < 0.00f;
+        
+
     }
 
     private void Jump()
@@ -110,7 +110,13 @@ public class MovePlayer : MonoBehaviour
         }
 
     }
-    
+
+    IEnumerator JumpTime()
+        {
+            Jump();
+            yield return new WaitForSeconds(2f);
+        }
+
     //аниматор
     public enum States
     {
