@@ -24,7 +24,7 @@ public class FireGun : MonoBehaviour
         {
             anim.SetBool("isFire", false);
         }
-         if (Input.GetKeyDown(KeyCode.R))
+         if (Input.GetKey(KeyCode.R )&& CanFire)
         {
             StartCoroutine(Reload());
         }
@@ -32,7 +32,6 @@ public class FireGun : MonoBehaviour
          if (ReloadMocha <= 0)
          { 
              StartCoroutine(Reload());
-             
          }
     
     }

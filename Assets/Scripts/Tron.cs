@@ -24,7 +24,6 @@ public class Tron : MonoBehaviour
         
     }
 
-    
 
     void Update()
     {
@@ -37,7 +36,7 @@ public class Tron : MonoBehaviour
            anim.SetBool("isBroken2", true);
            anim.SetBool("isBroken", false);
        }
-       
+     
     }
 
     private void OnTriggerEnter2D(Collider2D col)

@@ -28,11 +28,11 @@ public class MovePlayer : MonoBehaviour
     public Transform PlayerPoint;
     public LayerMask Ground;
     
+    
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponent<Animator>();
         
         gameObject.transform.position = new Vector3(-19.3099995f,-3.47000003f,-1);
@@ -92,10 +92,10 @@ public class MovePlayer : MonoBehaviour
         }
 
         transform.position = Vector3.MoveTowards(transform.position, transform.position + dir, speed * Time.deltaTime);
-
+        
         sprite.flipX = dir.x < 0.00f;
-        // GunScript.FlipSprite(dir);
-        return a;
+        
+
     }
 
     private void Jump()
@@ -120,8 +120,13 @@ public class MovePlayer : MonoBehaviour
         }
 
     }
-    
-    
+
+    IEnumerator JumpTime()
+        {
+            Jump();
+            yield return new WaitForSeconds(2f);
+        }
+
     //аниматор
     public enum States
     {
