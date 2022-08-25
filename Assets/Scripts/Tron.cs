@@ -24,6 +24,7 @@ public class Tron : MonoBehaviour
         
     }
 
+    
 
     void Update()
     {
