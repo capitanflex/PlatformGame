@@ -8,6 +8,6 @@ public class EnemyScript : MonoBehaviour
     
     void Update()
     {
-        
+        rb.velocity = Vector2.left;
     }
 }

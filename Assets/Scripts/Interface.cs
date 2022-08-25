@@ -10,11 +10,11 @@ public class Interface : MonoBehaviour
     public Text BulletStatus;
     public GameObject Invertory;
     public bool CheckInvertory = false;
-   
-    void Update()
-    {   
-        if(GetComponent<FireGun>().CanFire == true)
-        { 
+
+    void FixedUpdate()
+    {
+        if (GetComponent<FireGun>().CanFire == true)
+        {
             BulletStatus.text = "Urine supply: " + GetComponent<FireGun>().ReloadMocha;
         }
         else
@@ -22,22 +22,44 @@ public class Interface : MonoBehaviour
             BulletStatus.text = "Reload...";
         }
 
+        if (CheckInvertory == false)
+        {
+            OpenInvertory();
+        }
+
+        if (CheckInvertory == true)
+        {
+            CloseInvertory();
+        }
+        
+    }
+
     void OpenInvertory()
     {
-        if (CheckInvertory == false && Input.GetKeyDown("E"))
+        if (CheckInvertory == false && Input.GetKeyDown(KeyCode.E))
         {
             Invertory.SetActive(true);
-            CheckInvertory = true;
+            StartCoroutine(Pause());
+            
         }
     }
 
     void CloseInvertory()
     {
-        if (CheckInvertory != false  && Input.GetKeyDown("E"))
+        if (CheckInvertory == true  && Input.GetKeyDown(KeyCode.E))
         {
             Invertory.SetActive(false);
             CheckInvertory = false;
+            
         }
     }
+
+    IEnumerator Pause()
+    {
+        yield return new WaitForSeconds(0.1f);
+        CheckInvertory = true;
+    }
+
+    
 }
-}
+
