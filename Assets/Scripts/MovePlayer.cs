@@ -16,6 +16,7 @@ public class MovePlayer : MonoBehaviour
     public float jumpforce = 500f;
     
 
+    
     private bool isGrounded = false;
     private bool ternOnLeft = false;
 
