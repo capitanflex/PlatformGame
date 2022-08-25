@@ -24,14 +24,15 @@ public class FireGun : MonoBehaviour
         {
             anim.SetBool("isFire", false);
         }
-         if (Input.GetKey(KeyCode.R))
+         if (Input.GetKey(KeyCode.R )&& CanFire)
         {
             StartCoroutine(Reload());
         }
 
-         if (ReloadMocha <= 0)
+         if (ReloadMocha <= 0 && CanFire)
          { 
              StartCoroutine(Reload());
+             
          }
     
     }
