@@ -95,9 +95,10 @@ public class MovePlayer : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, transform.position + dir, speed * Time.deltaTime);
         
         sprite.flipX = dir.x < 0.00f;
-        
 
+        return a;
     }
+    
 
     private void Jump()
     {
