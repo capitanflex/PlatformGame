@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    public Rigidbody2D Enemy;
     public int a;
     public float speed;
     public SpriteRenderer SpriteRenderer;
@@ -14,7 +14,9 @@ public class EnemyScript : MonoBehaviour
     private bool targetSearched = false; 
     private Collider2D searchcircle;
     public Animator anim;
-    
+    public bool OnLeft;
+    public RaycastHit2D CheckBarrier1;
+    public LayerMask Ground;
     
     void Start()
     {
@@ -23,34 +25,40 @@ public class EnemyScript : MonoBehaviour
 
     private void Update()
     {
-        if(!targetSearched)
+        
+        if (!targetSearched)
         {
             if (a == 1)
             {
-                rb.velocity = Vector2.left * speed;
+                Enemy.velocity = Vector2.left * speed;
                 SpriteRenderer.flipX = false;
                 anim.SetBool("Go", true);
+                CheckBarrier1 = Physics2D.Raycast(transform.position, Vector3.left, Ground);
+                Debug.DrawRay(transform.position, Vector3.left, Color.blue);
             }
 
             if (a == 2)
             {
                 SpriteRenderer.flipX = true;
-                rb.velocity = Vector2.right * speed;
+                Enemy.velocity = Vector2.right * speed;
                 anim.SetBool("Go", true);
+                CheckBarrier1 = Physics2D.Raycast(transform.position, Vector3.right, Ground);
+                Debug.DrawRay(transform.position, Vector3.right, Color.blue);
             }
+
             if (a == 0)
             {
-                
-                rb.velocity = Vector2.left * 0;
+
+                Enemy.velocity = Vector2.left * 0;
                 anim.SetBool("Go", false);
                 anim.SetBool("Stop", true);
             }
-            Debug.Log(targetSearched);
+
             
         }
-        if(targetSearched)
+        
+        if (targetSearched)
         {
-            
             //target.position = transform.position + transform.right;
             transform.position = Vector2.MoveTowards(transform.position, target.position, 0.03f);
         }
@@ -63,6 +71,13 @@ public class EnemyScript : MonoBehaviour
             targetSearched = true;
         }
     }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Hero")
+        {
+            targetSearched = false;
+        }
+    }
 
     IEnumerator DefaultMove()
     { 
@@ -70,7 +85,7 @@ public class EnemyScript : MonoBehaviour
         {
             for(int j =0; j <1; j++)
             {
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     a = 1;
                     yield return new WaitForSeconds(2f);
@@ -84,5 +99,7 @@ public class EnemyScript : MonoBehaviour
         }
 
     }
+
+
 
 }
